@@ -8,14 +8,29 @@ use Illuminate\Http\Request;
 class PostLikeController extends Controller
 {
     //
+
+    public function __construct(){
+
+        // we cant have unauthenticated user liking
+        $this->middleware(['auth']);
+    }
+
     public function store(Post $post, Request $request){
-        
         // $request = Request;
+        if ($post->likedBy($request->user())) {
+            # code...
+            return response(null, 409);
+        }
 
         $post->likes()->create([
             'user_id' => $request->user()->id,
         ]);
 
+        return back();
+    }
+
+    public function destroy(Post $post, Request $request){
+        $request->user()->likes()->where('post_id', $post->id)->delete();
         return back();
     }
 }
