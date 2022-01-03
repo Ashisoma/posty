@@ -32,4 +32,9 @@ class Post extends Model
     {
         return $this->hasMany(Likes::class);
     }
+
+    public function receivedLikes()
+    {
+        return $this->hasManyThrough(Likes::class, Post::class);
+    }
 }
