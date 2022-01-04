@@ -26,8 +26,6 @@ class LoginController extends Controller
     {
         // dd('ok');
 
-       
-
         $this->validate($request,[
             'email' => 'required|email',
             'password' => 'required',
