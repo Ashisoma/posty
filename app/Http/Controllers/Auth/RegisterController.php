@@ -39,6 +39,7 @@ class RegisterController extends Controller
         ]);
 
             auth()->attempt($request->only('email','password'));
+            
             return redirect()->route('dashboard');
     }
 }
