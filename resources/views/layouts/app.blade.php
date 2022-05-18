@@ -16,9 +16,11 @@
             <li class="p-3">
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
+            @auth
             <li class="p-3">
                 <a href="{{ route('posts')}}">Post</a>
             </li>
+            @endauth
         </ul>
 
         <ul class="flex items-center">
